@@ -23,7 +23,11 @@ component output="false" accessors="false" {
     {
     	
     	switch( arguments.def ){
-    		
+            
+            case "port_redis":
+                return variables.RedisURI.DEFAULT_REDIS_PORT;
+            break;
+
     		case "timeoutUnit":
     			return variables.RedisURI.DEFAULT_TIMEOUT_UNIT;
     		break;
