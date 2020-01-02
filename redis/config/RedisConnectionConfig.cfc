@@ -56,9 +56,7 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
     public string function build(){
 
 		//create a RedisURI instance with builder
-        var builder = createObject( "java", "io.lettuce.core.RedisURI" )
-            .builder()
-            .redis( getHost(), getPort() );
+        var builder = getRedisURIBuilder().redis( getHost(), getPort() );
 
 		builder.withTimeout( getTimeout(), getTimeoutUnit() );
 

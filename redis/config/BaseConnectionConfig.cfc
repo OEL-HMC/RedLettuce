@@ -18,6 +18,11 @@ component output="false" accessors="false" {
         return this;
     }
     
+    public any function getRedisURIBuilder(){
+    	
+    	return variables.RedisURI.builder();
+    }
+    
     public any function getRedisDefault( required string def )
     hint="Helps getting the default values for RedisURI"
     {
