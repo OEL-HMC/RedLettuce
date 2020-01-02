@@ -18,7 +18,7 @@ component singleton accessors="false" output="false" {
         //day, hour, microsecond, millisecond, minute, nanosecond, second
         
         //
-        //day, hour, microsecond, millisecond, minute, nanosecond, second
+        //d, h, us, ms, m, ns, s
 
         switch( arguments.unit ){
 
