@@ -120,11 +120,6 @@ component extends="testbox.system.BaseSpec"{
 							
 							expect( config.getClass().getName() ).toBe("io.lettuce.core.RedisURI");
 
-
-							writeDump( config );
-							writeDump( config.getHost() );
-							writeDump( config.getSentinels() );
-
 							expect( config.getSentinels()[1].getHost() ).toBe("bloublou");
 							expect( config.getSentinels()[1].getPort() ).toBe(1616);
 
