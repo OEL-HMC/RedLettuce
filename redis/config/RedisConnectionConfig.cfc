@@ -53,6 +53,10 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
         return variables.connectionPort;
     }
 
+	public boolean function isSSL(){
+		
+		return false;
+	}
 
     public string function build()
     hint="returns a RedisURI instance"
@@ -60,6 +64,10 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
 
 		//create a RedisURI instance with builder
         var builder = getRedisURIBuilder().redis( getHost(), getPort() );
+        
+        builder.withSSL( javacast("boolean", isSSL() ) );
+        
+        
 
 
         //common builder settings
