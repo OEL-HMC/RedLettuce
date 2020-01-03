@@ -22,6 +22,36 @@ component output="false" accessors="false" {
     	
     	return variables.RedisURI.builder();
     }
+
+    private void function builderSetTimeout( required any builder  ){
+        arguments.builder.withTimeout( this.getTimeout(), this.getTimeoutUnit() );
+    }
+
+    private void function builderSetPassword( required any builder ){
+
+        if( isNull( getPassword() ) ){
+            return;
+        }
+
+        builder.withPassword( getPassword() );
+    }
+
+    private void function builderSetDatabase( required any builder ){
+        //set the database if provided	
+        if( isNull(getDatabase())  ){
+            return;
+        }
+        
+        builder.withDatabase( getDatabase() );
+        
+    }
+
+    private void function builderSetClientName( builder ){
+        //set the name if exists
+        if( ! isNull( getName() ) ){
+            builder.withClientName( getName() );
+        }
+    }
     
     public any function getRedisDefault( required string def )
     hint="Helps getting the default values for RedisURI"
@@ -105,7 +135,9 @@ component output="false" accessors="false" {
     }
 
 
-    public string function getPassword(){
+    public string function getPassword()
+    hint="returns the password for the connection"
+    {
 
         return variables.connectionPassword ?: javacast( "null", 0 );
     }
@@ -143,6 +175,8 @@ component output="false" accessors="false" {
     	);
     	
     }
+
+    
 
 
 }

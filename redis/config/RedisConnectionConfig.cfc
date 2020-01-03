@@ -2,7 +2,8 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
 {
 
     /**
-     * redis://[password@]host [: port][/database][? [timeout=timeout[d|h|m|s|ms|us|ns]] [ &database=database] [&clientName=clientName]]
+     * redis-sentinel://[password@]host1 [: port1][, host2 [:port2]][, hostN [:portN]][/ database]
+     * [? [timeout=timeout[d|h|m|s|ms|us|ns]] [ &sentinelMasterId=sentinelMasterId] [&database=database] [&clientName=clientName]]
      */
 
     property name="connectionHost" type="string";
@@ -53,32 +54,21 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
     }
 
 
-    public string function build(){
+    public string function build()
+    hint="returns a RedisURI instance"
+    {
 
 		//create a RedisURI instance with builder
         var builder = getRedisURIBuilder().redis( getHost(), getPort() );
 
-		builder.withTimeout( getTimeout(), getTimeoutUnit() );
 
-		//set the password if provided
-        if( ! isNull( getPassword() ) ){
-            builder.withPassword( getPassword() );
-        }
+        //common builder settings
+        builderSetTimeout( builder );
+        builderSetPassword( builder );
+        builderSetDatabase( builder );
+        builderSetClientName( builder );
 
-		//set the database if provided	
-        if( ! isNUll( getDatabase() ) ){
-            builder.withDatabase( getDatabase() );
-        }
-
-		//set the duration if exists
-        
-        
-        
-
-		//set the name if exists
-        if( ! isNull( getName() ) ){
-            builder.withClientName( getName() );
-        }
+		
 
         return builder.build();
     }
