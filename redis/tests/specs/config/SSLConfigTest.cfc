@@ -127,8 +127,8 @@ component extends="testbox.system.BaseSpec"{
                     		try{
                     			
 								var config = new redis.config.SSLConnectionConfig('base').timeout(60, "m")
-									.port(1616)
 									.host("bloublou")
+									.port(1616)
 									.build();	
                     		}catch( REDIS e ){
                     			

@@ -13,6 +13,10 @@ hint="Command to delete one or more keys. Beware : blocking operation"
 
         var delArguments = isSimpleValue(arguments.matches) ? [ arguments.matches ] : arguments.matches;
 
+        if( arrayIsEmpty( delArguments ) ){
+            return -1;
+        }
+
         return redisClient.getCommands().del( delArguments );
     }
 

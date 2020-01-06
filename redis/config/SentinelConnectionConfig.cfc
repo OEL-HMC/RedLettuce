@@ -17,6 +17,10 @@ component accessors="false" output="false" extends="BaseConnectionConfig"  {
         return this;
     }
     
+    public any function getHostsInfos(){
+        return variables.hosts;
+    }
+
     public any function build(){
         
         if( arrayIsEmpty( variables.hosts ) ){
@@ -30,7 +34,7 @@ component accessors="false" output="false" extends="BaseConnectionConfig"  {
         
         
 
-        getHosts().each(
+        getHostsInfos().each(
 
             function ( struct sentinelHost, numeric idx, array original ){
 

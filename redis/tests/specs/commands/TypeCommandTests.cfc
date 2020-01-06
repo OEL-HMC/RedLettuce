@@ -12,8 +12,8 @@ component extends="testbox.system.BaseSpec"{
                         "Make a TYPE command on a non-existing key : returns 'none'", 
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -32,8 +32,8 @@ component extends="testbox.system.BaseSpec"{
                     it("Make a scan and get the type of the first key", 
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();

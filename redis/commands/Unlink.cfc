@@ -13,7 +13,7 @@ hint="Command to unlink one or more keys, same as DEL command but this one is no
 
         var delArguments = isSimpleValue(arguments.matches) ? listToArray(arguments.matches) : arguments.matches;
 
-        writeDump( redisClient.getCommands() );
+        //writeDump( redisClient.getCommands() );
 
         return redisClient.getCommands().unlink( delArguments );
     }

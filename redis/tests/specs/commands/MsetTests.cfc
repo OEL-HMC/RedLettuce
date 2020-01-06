@@ -14,8 +14,8 @@ component extends="testbox.system.BaseSpec"{
 
 
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();

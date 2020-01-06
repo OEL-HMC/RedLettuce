@@ -17,6 +17,9 @@ component{
         if( isNull( strValue )   ){
             return javacast( "null", 0 );
         }
+  
+        
+        
 
         return strValue;
     }

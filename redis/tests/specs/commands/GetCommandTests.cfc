@@ -12,8 +12,8 @@ component extends="testbox.system.BaseSpec"{
                         "Get a key that exists, and which is a string.", 
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -41,16 +41,17 @@ component extends="testbox.system.BaseSpec"{
                         "Get a key that DOES NOT exists, NULL is returned.", 
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
 
-                            
 
-                            var res = new redis.commands.get().execute( redisClient, "HAHAHAHAHA" );
-                            expect( isNull(res) ).toBeTrue();
+
+
+                            var res = new redis.commands.get().execute( redisClient, "HAHAHAHAHAMMMMM" );
+                            expect( isNull(local.res) ).toBeTrue();
 
                             
 

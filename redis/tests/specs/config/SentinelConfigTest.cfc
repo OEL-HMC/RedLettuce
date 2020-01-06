@@ -85,9 +85,9 @@ component extends="testbox.system.BaseSpec"{
 								var config = new redis.config.SentinelConnectionConfig('base').host('blabla:1717');	
 								
 								
-								expect( config.getHost()[1].host ).toBe('blabla');
-								expect( config.getHost()[1].port ).toBe(1717);
-								expect( config.getHost()[1].port.getClass().getName() ).toBe("java.lang.Integer");
+								expect( config.getHost()[1] ).toBe('blabla');
+								expect( config.getPorts()[1] ).toBe(1717);
+								expect( config.getPorts()[1].getClass().getName() ).toBe("java.lang.Integer");
 
 								config.build();
 							}

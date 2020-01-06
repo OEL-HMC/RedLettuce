@@ -158,7 +158,7 @@ component output="false" accessors="false" {
 
     public string function getName(){
 
-        return variables.clientName ?: null;
+        return variables.clientName ?: javacast("null", 0);
     }
 
     public string function getType(){

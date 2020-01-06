@@ -11,8 +11,8 @@ component extends="testbox.system.BaseSpec"{
                     it(
                         "Build a redis client", 
                         function(){
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -34,8 +34,8 @@ component extends="testbox.system.BaseSpec"{
                         "Real connection on a Redis docker instance",
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -59,8 +59,8 @@ component extends="testbox.system.BaseSpec"{
                         "Make a scan call without any argument",
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -79,8 +79,8 @@ component extends="testbox.system.BaseSpec"{
                         "Make a scan call without any argument",
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
@@ -97,13 +97,15 @@ component extends="testbox.system.BaseSpec"{
                         "Make a scan call with limit 10",
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
 
-                            var res = new redis.commands.scan().execute( redisClient, "*", 10 );
+                            var res = new redis.commands.scan().execute( redisClient, "*", 10 );  
+
+                            
 
                             expect( res.len() ).toBe( 576 );
 
@@ -118,8 +120,8 @@ component extends="testbox.system.BaseSpec"{
                         "Make a KEYS call",
                         function(){
 
-                            var builder = new redis.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnection().host("#request.masterRedis.host#").name( "redis-cf-client" );
+                            var builder = new redis.client.RedisClientBuilder();
+                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
                             var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
                             redisClient.connect();
