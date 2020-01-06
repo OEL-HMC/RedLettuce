@@ -59,6 +59,10 @@ component output="false" accessors="false" {
     	
     	switch( arguments.def ){
             
+            case "port_sentinel":
+                return variables.RedisURI.DEFAULT_SENTINEL_PORT;
+            break;
+
             case "port_redis":
                 return variables.RedisURI.DEFAULT_REDIS_PORT;
             break;

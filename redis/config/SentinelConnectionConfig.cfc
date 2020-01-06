@@ -113,8 +113,19 @@ component accessors="false" output="false" extends="BaseConnectionConfig"  {
     public array function getHosts()
     hint="Get the array of redis sentinels, first one is supposed to be the master"
     {
+        return variables.hosts.map(
+            function( struct h ){
+                return h.host;
+            }
+        );
+    }
 
-        return variables.hosts;
+    public array function getPorts(){
+        return variables.hosts.map(
+            function( struct h ){
+                return h.port ?: "";
+            }
+        );
     }
     
     public string function getMasterId()

@@ -13,8 +13,7 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
 
         super.init("redis");
 
-        variables.connectionHost = "localhost";
-        variables.connectionPort = getRedisDefault("port_redis");
+        this.host("");
         
 
         return this;
@@ -22,15 +21,31 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
 
     public RedisConnectionConfig function host( required string host ){
 
+
+        if( len( trim( arguments.host ) ) == 0){
+
+            variables.connectionHost = "localhost";
+            variables.connectionPort = getRedisDefault("port_redis");
+
+            return this;
+        }
+
 		//get the domain from argument
         variables.connectionHost = listFirst(arguments.host, ":");
 
 		//if port exists, set it.
         if( listLen( arguments.host, ":" ) >= 2 ){
             this.port( listGetAt(arguments.host, 2, ":") );
+        }else{
+            //force it back to default if user has wrongly called several hosts
+            this.port( getRedisDefault('port_redis') );
         }
 
+        
+
         return this;
+
+        
     }
 
     public RedisConnectionConfig function port( required numeric port )
@@ -50,7 +65,11 @@ component accessors="false" output="false" extends="BaseConnectionConfig"
 
     public numeric function getPort() hint="Simple getter for Port"{
 
-        return variables.connectionPort;
+        return variables.connectionPort ?: getRedisDefault('port_redis');
+    }
+
+    public array function getPorts(){
+        return [ getPort() ];
     }
 
 	public boolean function isSSL(){
