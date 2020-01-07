@@ -34,6 +34,7 @@ component extends="testbox.system.BaseSpec"{
 
                             expect( local.res ).toBe(1);
 
+                            redisClient.shutdown();
 
                         }
                     );

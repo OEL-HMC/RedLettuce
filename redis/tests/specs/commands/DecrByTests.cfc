@@ -1,4 +1,4 @@
-component extends="testbox.system.BaseSpec"{
+component extends="BaseCommandTest"{
 
 
         function run(){
@@ -12,11 +12,7 @@ component extends="testbox.system.BaseSpec"{
                         "DECRBY key 1", 
                         function(){
 
-                            var builder = new redis.client.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
-                            var redisClient = builder.createRedisClientWithRedisURI( conf );
                             
-                            redisClient.connect();
 
                             var res = new redis.commands.DecrBy().execute( redisClient,  "INCRBY_KEY", 1);
 
@@ -30,7 +26,7 @@ component extends="testbox.system.BaseSpec"{
 
                             expect( res ).toBe(1);
 
-                            redisClient.shutdown();  
+                            
 
                         }
                     );
@@ -39,11 +35,6 @@ component extends="testbox.system.BaseSpec"{
                         "DECRBY key 1", 
                         function(){
 
-                            var builder = new redis.client.RedisClientBuilder();
-                            var conf = new redis.config.RedisConnectionConfig().host("#request.masterRedis.host#").name( "redis-cf-client" );
-                            var redisClient = builder.createRedisClientWithRedisURI( conf );
-                            
-                            redisClient.connect();
 
                             var res = new redis.commands.DecrBy().execute( redisClient,  "INCRBY_KEY", 2);
 
@@ -57,7 +48,7 @@ component extends="testbox.system.BaseSpec"{
 
                             expect( res ).toBe(1);
 
-                            redisClient.shutdown();  
+
 
                         }
                     );

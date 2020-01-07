@@ -1,8 +1,6 @@
 component extends="testbox.system.BaseSpec"{
 
-		function beforeAll(){
-			
-		}
+	
 
         function run(){
         

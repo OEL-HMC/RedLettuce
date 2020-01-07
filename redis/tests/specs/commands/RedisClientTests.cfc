@@ -103,11 +103,14 @@ component extends="testbox.system.BaseSpec"{
                             
                             redisClient.connect();
 
+                            var dbsize = new redis.commands.DBSize().execute( redisClient );
+
+
                             var res = new redis.commands.scan().execute( redisClient, "*", 10 );  
 
                             
 
-                            expect( res.len() ).toBe( 576 );
+                            expect( res.len() ).toBe( local.dbsize );
 
                             //writeDump( redisClient.getCommands() );
 
