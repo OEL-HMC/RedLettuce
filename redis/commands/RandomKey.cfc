@@ -6,7 +6,7 @@ component{
         required RedisClient redisClient
     ){
 
-        return redisClient.getCommands.randomkey();
+        return redisClient.getCommands().randomkey() ?: javacast("null", 0);
     }
 
 }

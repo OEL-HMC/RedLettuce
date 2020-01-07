@@ -11,12 +11,7 @@ component accessors="false" output="false"{
         required any value
     ){
 
-        writeDump(
-            redisClient.getCommands()
-        );
-
         return redisClient.getCommands().getset( arguments.key, arguments.value );
-
     }
 
 }
